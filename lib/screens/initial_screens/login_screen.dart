@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
+import 'forgot_password_screen.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
-  void switchToLoginScreen() {
+class _LoginScreenState extends State<LoginScreen> {
+  void switchToForgotPasswordScreen() {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
+          builder: (context) => const ForgotPasswordScreen(),
         ));
   }
 
@@ -39,32 +39,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 padding: const EdgeInsets.only(top: 12, bottom: 30),
                 child: Row(
                   children: [
-                    Text('Sign up',
-                        style: Theme.of(context).textTheme.bodyLarge),
+                    Text('Login', style: Theme.of(context).textTheme.bodyLarge),
                   ],
-                ),
-              ),
-              SizedBox(
-                height: 58,
-                child: TextField(
-                  keyboardType: TextInputType.name,
-                  cursorColor: const Color(0xffF5F5F5),
-                  style: Theme.of(context).textTheme.titleSmall,
-                  decoration: InputDecoration(
-                      fillColor: const Color(0xff2A2C36),
-                      filled: true,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4),
-                          borderSide:
-                              const BorderSide(color: Colors.deepPurple)),
-                      labelText: 'Name',
-                      labelStyle: Theme.of(context).textTheme.labelMedium,
-                      suffixIcon: const Icon(
-                        Icons.check,
-                        color: Color(0xff55D85A),
-                      )),
                 ),
               ),
               SizedBox(
@@ -123,7 +99,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       child: Row(
                         children: [
                           Text(
-                            'Already have an account?',
+                            'Forgot your password?',
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                           const Icon(
@@ -143,17 +119,17 @@ class _SignupScreenState extends State<SignupScreen> {
                     minimumSize: const Size.fromHeight(44),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25))),
-                onPressed: switchToLoginScreen,
+                onPressed: switchToForgotPasswordScreen,
                 child: Text(
-                  'SIGN UP',
+                  'LOGIN',
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
               const SizedBox(
-                height: 118,
+                height: 176,
               ),
               Text(
-                'Or sign up with social account',
+                'Or login with social account',
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               Padding(
