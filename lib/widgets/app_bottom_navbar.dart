@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/bag_screens/bag.dart';
 import '../screens/favorites_screen.dart';
 import '../screens/home_screens/main1.dart';
 import '../screens/profile_screens/my_profile.dart';
@@ -79,16 +80,14 @@ class _AppBottomNavBarState extends State<AppBottomNavBar> {
         body: PageView(
           controller: pageController,
           physics: const BouncingScrollPhysics(),
-          children: [
-            const MainScreen1(),
-            const CategoriesScreen(),
-            Container(
-              color: Colors.black,
-            ),
-            const FavoriteScreen(
+          children: const [
+            MainScreen1(),
+            CategoriesScreen(),
+            BagPage(),
+            FavoriteScreen(
               favouriteList: [],
             ),
-            const MyProfileScreen()
+            MyProfileScreen()
           ],
           onPageChanged: (newPageIndex) {
             setState(() {
