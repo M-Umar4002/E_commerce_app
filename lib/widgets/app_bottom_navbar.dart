@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import '../screens/profile_screens/my_profile_screen.dart';
+import '../screens/favorites_screen.dart';
+import '../screens/home_screens/main1.dart';
+import '../screens/profile_screens/my_profile.dart';
+import '../screens/shop_screens/categories.dart';
 
 class AppBottomNavBar extends StatefulWidget {
   const AppBottomNavBar({super.key});
@@ -77,17 +80,13 @@ class _AppBottomNavBarState extends State<AppBottomNavBar> {
           controller: pageController,
           physics: const BouncingScrollPhysics(),
           children: [
-            const Center(
-              child: Text('welcome'),
-            ),
-            Container(
-              color: Colors.blue,
-            ),
+            const MainScreen1(),
+            const CategoriesScreen(),
             Container(
               color: Colors.black,
             ),
-            Container(
-              color: Colors.red,
+            const FavoriteScreen(
+              favouriteList: [],
             ),
             const MyProfileScreen()
           ],

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'my_orders.dart';
+import 'settings.dart';
 
 class MyProfileScreen extends StatefulWidget {
   const MyProfileScreen({super.key});
@@ -8,6 +10,22 @@ class MyProfileScreen extends StatefulWidget {
 }
 
 class _MyProfileScreenState extends State<MyProfileScreen> {
+  void _switchToMyOrdersScreen() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const MyOrdersScreen(),
+        ));
+  }
+
+  void _switchToSettingsScreen() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const SettingsScreen(),
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -69,7 +87,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
             const SizedBox(
               height: 10,
             ),
-            _showProfileTiles('My orders', 'Already have 12 orders', () {}),
+            _showProfileTiles(
+                'My orders', 'Already have 12 orders', _switchToMyOrdersScreen),
             Divider(
               color: const Color(0xffABB4BD).withOpacity(0.4),
               height: 0,
@@ -95,7 +114,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
               color: const Color(0xffABB4BD).withOpacity(0.4),
               height: 0,
             ),
-            _showProfileTiles('Settings', 'Notifications, password', () {}),
+            _showProfileTiles(
+                'Settings', 'Notifications, password', _switchToSettingsScreen),
           ],
         ),
       ),

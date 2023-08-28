@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'visual_search_screen2.dart';
+import 'visual_search2.dart';
+import 'package:image_picker/image_picker.dart';
 
 class VisualSearchScreen1 extends StatefulWidget {
   const VisualSearchScreen1({super.key});
@@ -9,12 +10,17 @@ class VisualSearchScreen1 extends StatefulWidget {
 }
 
 class _VisualSearchScreen1State extends State<VisualSearchScreen1> {
-  void switchToVisualSearchScreen2() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const VisualSearchScreen2(),
-        ));
+  void switchToVisualSearchScreen2(ImageSource source) async {
+    ImagePicker picker = ImagePicker();
+    XFile? image = await picker.pickImage(source: source);
+
+    if (image != null) {
+      await Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => VisualSearchScreen2(uploadedImage: image),
+          ));
+    }
   }
 
   @override
@@ -25,11 +31,7 @@ class _VisualSearchScreen1State extends State<VisualSearchScreen1> {
           preferredSize: const Size.fromHeight(38),
           child: AppBar(
             backgroundColor: const Color(0xff1E1F28),
-            leading: const Icon(
-              Icons.arrow_back_ios,
-              color: Color(0xffF6F6F6),
-              size: 16,
-            ),
+            automaticallyImplyLeading: false,
             title: Text(
               'Visual search',
               style: Theme.of(context).textTheme.bodyMedium,
@@ -66,7 +68,9 @@ class _VisualSearchScreen1State extends State<VisualSearchScreen1> {
                           minimumSize: const Size.fromHeight(44),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25))),
-                      onPressed: () {},
+                      onPressed: () {
+                        switchToVisualSearchScreen2(ImageSource.camera);
+                      },
                       child: Text(
                         'TAKE A PHOTO',
                         style: Theme.of(context).textTheme.titleSmall,
@@ -80,7 +84,9 @@ class _VisualSearchScreen1State extends State<VisualSearchScreen1> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25),
                             side: const BorderSide(color: Color(0xffF6F6F6)))),
-                    onPressed: switchToVisualSearchScreen2,
+                    onPressed: () {
+                      switchToVisualSearchScreen2(ImageSource.gallery);
+                    },
                     child: Text(
                       'UPLOAD AN IMAGE',
                       style: Theme.of(context).textTheme.bodySmall,

@@ -1,8 +1,12 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../widgets/app_bottom_navbar.dart';
 
 class VisualSearchScreen2 extends StatefulWidget {
-  const VisualSearchScreen2({super.key});
+  const VisualSearchScreen2({super.key, required this.uploadedImage});
+
+  final XFile uploadedImage;
 
   @override
   State<VisualSearchScreen2> createState() => _VisualSearchScreen2State();
@@ -10,7 +14,7 @@ class VisualSearchScreen2 extends StatefulWidget {
 
 class _VisualSearchScreen2State extends State<VisualSearchScreen2> {
   void switchToBottomNavbar() {
-    Navigator.push(
+    Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => const AppBottomNavBar(),
@@ -38,10 +42,10 @@ class _VisualSearchScreen2State extends State<VisualSearchScreen2> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 210,
                     height: 212,
-                    color: Colors.amber,
+                    child: Image.file(File(widget.uploadedImage.path)),
                   ),
                 ],
               ),
